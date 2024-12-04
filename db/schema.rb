@@ -23,13 +23,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_175838) do
     t.string "first_name"
     t.string "last_name"
     t.string "surname"
-    t.string "string"
-    t.bigint "class_id"
+    t.bigint "study_class_id"
     t.bigint "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["class_id"], name: "index_students_on_class_id"
     t.index ["school_id"], name: "index_students_on_school_id"
+    t.index ["study_class_id"], name: "index_students_on_study_class_id"
   end
 
   create_table "study_classes", force: :cascade do |t|
@@ -43,6 +42,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_04_175838) do
   end
 
   add_foreign_key "students", "schools"
-  add_foreign_key "students", "study_classes", column: "class_id"
+  add_foreign_key "students", "study_classes"
   add_foreign_key "study_classes", "schools"
 end
