@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :schools, only: [] do
-    resources :classes, only: [:index], controller: 'api/v1/study_classes' do
+    resources :study_classes, path: 'classes', only: :index do
+    # resources :classes, only: [:index], controller: 'api/v1/study_classes' do
       resources :students, only: %i[index]
     end
   end
