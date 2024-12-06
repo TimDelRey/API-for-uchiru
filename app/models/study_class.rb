@@ -7,6 +7,4 @@ class StudyClass < ApplicationRecord
 
   has_many :students
   belongs_to :school
-
-  # self.student_sount = students.count
 end
