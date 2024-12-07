@@ -57,22 +57,3 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
-
-
-# Используем базовый образ
-# FROM ruby:3.1
-
-# Устанавливаем зависимости
-# RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-
-# Создаем рабочую директорию
-# WORKDIR /myapp
-
-# Копируем файл Gemfile и Gemfile.lock
-# COPY Gemfile* /myapp/
-
-# Устанавливаем библиотеки
-# RUN bundle install
-
-# Копируем весь проект
-# COPY . /myapp

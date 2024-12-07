@@ -4,10 +4,10 @@ class StudentsController < ApplicationController
   include ActionController::Cookies
 
   before_action :authenticate_student, only: [:destroy]
+  before_action :set_school, only: [:index]
+  before_action :set_class, only: [:index]
 
-  def index # добавить валидацию не существующих студентов
-    @school = School.find(params[:school_id])
-    @study_class = StudyClass.find(params[:study_class_id])
+  def index
     @students = @study_class.students
     render json: @students, status: 201
   end
@@ -15,10 +15,6 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      # cookies[:auth_token] = { value: @student.auth_token,
-      #                         httponly: true, # защита от JS
-      #                         same_site: :lax } # защита CSR
-
       render json: @student, status: 201
       response.set_header('X-Auth-Token', @student.auth_token)
     else
@@ -33,11 +29,23 @@ class StudentsController < ApplicationController
       @student.destroy
       render json: @student.study_class
     else
-      render plain: 'Некорректный id студента', status: 400
+      render json: { message: 'Некорректный id студента' }, status: 400
     end
   end
   
   private
+
+  def set_school
+    @school = School.find(params[:school_id])
+  rescue ActiveRecord::RecordNotFound
+      render json: { message: 'Школа не найдена' }, status: :not_found
+  end
+
+  def set_class
+    @study_class = StudyClass.find(params[:study_class_id])
+  rescue ActiveRecord::RecordNotFound
+      render json: { message: 'Класс не найдена' }, status: :not_found
+  end
 
   def student_params
     params.require(:student).permit(:first_name,
@@ -52,7 +60,7 @@ class StudentsController < ApplicationController
     token = auth_header&.split(' ')&.last
 
     unless valid_token?(token)
-      render plain: 'Некорректная авторизация', status: 401
+      render json: { message: 'Некорректная авторизация' }, status: 401
     end
   end
 
