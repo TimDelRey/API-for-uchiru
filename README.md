@@ -1,25 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Привет! Меня зовут Тимур, меня очень увлекает программирование и бесконечное развитие в этом направлении.
 
-Things you may want to cover:
+# Задание для стажировки Ruby инженера
 
-* Ruby version
+Привет! Если ты хочешь стать частью команды Учи.ру в рамках стажёрской программы,
+то тебе необходимо выполнить небольшое тестовое задание. Это нужно, что бы твои
+потенциальные наставники смогли оценить твои навыки и сравнив их с остальными
+кандидатами выбрать лучших из лучших. 
 
-* System dependencies
+Помни, что работающий продукт важнее количества технологий и красивого кода.
 
-* Configuration
+Удачи!
 
-* Database creation
+## Что нужно сделать ?
 
-* Database initialization
+- реализовать сервис, по описанию ниже
+- опубликовать его в своём GitHub репозитарии
+- прислать нам ссылку на опубликованный репозитарий
+- ждать обратной связи :)
 
-* How to run the test suite
+## Требования к проекту
 
-* Services (job queues, cache servers, search engines, etc.)
+- полная реализация API, описанного в openapi.yaml
+- **необходимо** использовать технологии:
+  - фреймворк Ruby on Rails
+  - база данных PostgreSQL
+  - Docker
+- проект должен запускаться локально командой `docker compose up`, etc.)
 
-* Deployment instructions
+# Результаты из Postman
+**GET** `http://localhost:3000/schools/1/classes`
+![Снимок экрана 2024-12-08 в 22 58 12](https://github.com/user-attachments/assets/322ce81a-4050-4d46-bbb7-5c03de1b6741)
+**GET** `http://localhost:3000/schools/1/classes/1/students`
+![Снимок экрана 2024-12-08 в 22 59 51](https://github.com/user-attachments/assets/028adbf7-506b-4acf-9fa3-c9e7bd41a6cd)
+**POST** `http://localhost:3000/students`
+![Снимок экрана 2024-12-08 в 23 02 00](https://github.com/user-attachments/assets/149261b4-eef3-4904-942e-8b8440872051)
+**DELETE** `http://localhost:3000/students/12`
+![Снимок экрана 2024-12-08 в 23 03 52](https://github.com/user-attachments/assets/1131273d-2cf7-4a39-8bbd-9a2d94063e39)
+
+
 
 * ...
 # API-for-uchiru
